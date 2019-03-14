@@ -207,7 +207,7 @@ class UserController extends ApiController
     /**
      * @OA\Put(
      *     path="/users",
-     *     summary="Atualiza um novo usuário",
+     *     summary="Atualiza um usuário",
      *     operationId="UpdateUser",
      *     tags={"users"},
      *     @OA\Parameter(
@@ -334,7 +334,7 @@ class UserController extends ApiController
     /**
      * @OA\Get(
      *     path="/users/{id}",
-     *     summary="Lista todas os usuários",
+     *     summary="Lista um usuário",
      *     operationId="GetUser",
      *     tags={"users"},
      *     @OA\Parameter(
@@ -360,7 +360,7 @@ class UserController extends ApiController
     /**
      * @OA\Delete(
      *     path="/users/{id}",
-     *     summary="Lista todas os usuários",
+     *     summary="Apaga um usuário",
      *     operationId="DeleteUser",
      *     tags={"users"},
      *     @OA\Parameter(

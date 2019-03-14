@@ -9,5 +9,14 @@
  *     email="support@example.com"
  *   )
  * )
+ * @OA\SecurityScheme(
+ *   securityScheme="apiToken",
+ *   type="apiKey",
+ *   in="header",
+ *   scheme="bearer",
+ *   name="Authorization",
+ *   description="Token do client para consumo da API"
+ * )
  */
+
 

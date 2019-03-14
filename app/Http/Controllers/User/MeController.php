@@ -62,7 +62,7 @@ class MeController extends Controller
      *         name="first_name",
      *         in="query",
      *         description="Primeiro nome",
-     *         required=false,
+     *         required=true,
      *         @OA\Schema(
      *           type="string"
      *         )
@@ -71,7 +71,7 @@ class MeController extends Controller
      *         name="last_name",
      *         in="query",
      *         description="Ultimo nome",
-     *         required=false,
+     *         required=true,
      *         @OA\Schema(
      *           type="string"
      *         )
@@ -117,7 +117,7 @@ class MeController extends Controller
      *         name="email",
      *         in="query",
      *         description="E-mail do cidadão",
-     *         required=false,
+     *         required=true,
      *        @OA\Schema(
      *           type="string"
      *         )
@@ -170,14 +170,16 @@ class MeController extends Controller
             if(! Hash::check($request->input('old_password'), $user->password)){
                 return response()->json(['error' => 'Incorrect Password'], 401);
             }
+
             $all = $request->all();
             $all['password'] = Hash::make($all['password']);
             $user->update($all);
+
             return $this->success($user);
         }
-        
-        $user = User::where('id',Auth::user()->id)->update($request->except(['password', 'password_confirmation']));
-        //TODO return user after update
-        return $this->success(Auth::user());
+
+        User::find(Auth::user()->id)->update($request->except(['password', 'password_confirmation']));
+
+        return $this->success(User::find(Auth::user()->id));
     }
 }

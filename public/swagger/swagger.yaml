@@ -91,14 +91,14 @@ paths:
           name: first_name
           in: query
           description: 'Primeiro nome'
-          required: false
+          required: true
           schema:
             type: string
         -
           name: last_name
           in: query
           description: 'Ultimo nome'
-          required: false
+          required: true
           schema:
             type: string
         -
@@ -133,7 +133,7 @@ paths:
           name: email
           in: query
           description: 'E-mail do cidadão'
-          required: false
+          required: true
           schema:
             type: string
         -

@@ -1,0 +1,1236 @@
+openapi: 3.0.0
+info:
+  title: 'My first API'
+  contact:
+    email: support@example.com
+  version: 1.0.0
+paths:
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: 'Autenticação de usuário'
+      operationId: AuthLogin
+      parameters:
+        -
+          name: email
+          in: query
+          description: 'E-mail para autenticação'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Senha para autenticação'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  /admin/auth/login:
+    post:
+      tags:
+        - auth
+      summary: 'Autenticação da administração'
+      operationId: AuthAdminLogin
+      parameters:
+        -
+          name: email
+          in: query
+          description: 'E-mail para autenticação'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Senha para autenticação'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  /auth/refresh:
+    post:
+      tags:
+        - auth
+      summary: 'Atualiza o token atual do usuário'
+      operationId: AuthRefresh
+      responses:
+        '200':
+          description: ...
+  /courses:
+    get:
+      tags:
+        - courses
+      summary: 'Retorna todos os cursos registrados'
+      operationId: GetCourses
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - courses
+      summary: 'Registra um novo curso'
+      operationId: StoreCourse
+      parameters:
+        -
+          name: organization_id
+          in: query
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: status_id
+          in: query
+          description: 'id do status de curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'nome do curso'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'descrição do curso'
+          required: true
+          schema:
+            type: string
+        -
+          name: cover
+          in: query
+          description: 'imagem de capa do curso'
+          required: true
+          schema:
+            type: file
+        -
+          name: price
+          in: query
+          description: 'id do status de curso'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
+  '/courses/{course_id}':
+    get:
+      tags:
+        - courses
+      summary: 'Retorna todos os cursos registrados'
+      operationId: GetCourse
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - courses
+      summary: 'Deleta um curso'
+      operationId: DeleteCourse
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/courses/{id}':
+    put:
+      tags:
+        - courses
+      summary: 'Atualiza um novo curso'
+      operationId: UpdateCourse
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: organization_id
+          in: query
+          description: 'id da organização'
+          required: false
+          schema:
+            type: integer
+        -
+          name: status_id
+          in: query
+          description: 'id do status de curso'
+          required: false
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'nome do curso'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'descrição do curso'
+          required: false
+          schema:
+            type: string
+        -
+          name: price
+          in: query
+          description: 'id do status de curso'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
+  '/courses/{course_id}/join/{professor_id}':
+    post:
+      tags:
+        - courses
+      summary: 'Anexa o professor do curso'
+      operationId: AttachCourseProfesssor
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: professor_id
+          in: path
+          description: 'id do professor'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/courses/{course_id}/leave/{professor_id}':
+    post:
+      tags:
+        - courses
+      summary: 'Remove o professor do curso'
+      operationId: DetachCourseProfesssor
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: professor_id
+          in: path
+          description: 'id do professor'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/courses/{course_id}/modules':
+    get:
+      tags:
+        - courses
+        - modules
+      summary: 'Retorna todos os cursos registrados'
+      operationId: GetCourseModules
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - courses
+        - modules
+      summary: 'Retorna todos os cursos registrados'
+      operationId: StoreCourseModules
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'nome do curso'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'descrição do curso'
+          required: true
+          schema:
+            type: string
+        -
+          name: order
+          in: query
+          description: 'ordem do curso'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/courses/{course_id}/modules/{module_id}':
+    get:
+      tags:
+        - courses
+        - modules
+      summary: 'Retorna todos os cursos registrados'
+      operationId: GetCourseModule
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: module_id
+          in: path
+          description: 'id do módulo'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - courses
+        - modules
+      summary: 'Retorna todos os cursos registrados'
+      operationId: UpdateCourseModules
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: module_id
+          in: path
+          description: 'id do módulo'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'nome do curso'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'descrição do curso'
+          required: false
+          schema:
+            type: string
+        -
+          name: order
+          in: query
+          description: 'ordem do curso'
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - courses
+        - modules
+      summary: 'Retorna todos os cursos registrados'
+      operationId: DeleteCourseModules
+      parameters:
+        -
+          name: course_id
+          in: path
+          description: 'id do curso'
+          required: true
+          schema:
+            type: integer
+        -
+          name: module_id
+          in: path
+          description: 'id do módulo'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  /courses-status:
+    get:
+      tags:
+        - courses
+        - status
+      summary: 'Retorna todos os status de curso'
+      operationId: GetCourseStatuses
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - courses
+        - status
+      summary: 'Cria um novo status de curso'
+      operationId: StoreCourseStatuses
+      parameters:
+        -
+          name: name
+          in: query
+          description: 'Nome do status'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do status'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/courses-status/{id}':
+    get:
+      tags:
+        - courses
+        - status
+      summary: 'Retorna todos os status de curso'
+      operationId: GetCourseStatus
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id do status'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - courses
+        - status
+      summary: 'Edita um status de curso'
+      operationId: UpdateCourseStatuses
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id do status'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome do status'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do status'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - courses
+        - status
+      summary: 'Delete um status de curso'
+      operationId: DeleteCourseStatuses
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id do status'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  /organizations:
+    get:
+      tags:
+        - organizations
+      summary: 'Retorna todos as organizações referentes'
+      operationId: GetOrganizations
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - organizations
+      summary: 'Cria uma nova organização'
+      operationId: StoreOrganization
+      parameters:
+        -
+          name: corporate_name
+          in: query
+          description: 'Nome da corporação'
+          required: true
+          schema:
+            type: string
+        -
+          name: trading_name
+          in: query
+          description: 'Nome de troca (?)'
+          required: true
+          schema:
+            type: string
+        -
+          name: document_number
+          in: query
+          description: 'Numero do documento da organização'
+          required: true
+          schema:
+            type: string
+        -
+          name: contact_name
+          in: query
+          description: 'Nome para contato'
+          required: true
+          schema:
+            type: string
+        -
+          name: contact_email
+          in: query
+          description: 'E-mail para contato'
+          required: true
+          schema:
+            type: string
+        -
+          name: contact_phone_number
+          in: query
+          description: 'Telefone para contato'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/organizations/{id}':
+    get:
+      tags:
+        - organizations
+      summary: 'Retorna todos as organizações referentes'
+      operationId: GetOrganization
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Nome da corporação'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - organizations
+      summary: 'Cria uma nova organização'
+      operationId: UpdateOrganization
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Nome da corporação'
+          required: true
+          schema:
+            type: integer
+        -
+          name: corporate_name
+          in: query
+          description: 'Nome da corporação'
+          required: false
+          schema:
+            type: string
+        -
+          name: trading_name
+          in: query
+          description: 'Nome de troca (?)'
+          required: false
+          schema:
+            type: string
+        -
+          name: document_number
+          in: query
+          description: 'Numero do documento da organização'
+          required: false
+          schema:
+            type: string
+        -
+          name: contact_name
+          in: query
+          description: 'Nome para contato'
+          required: false
+          schema:
+            type: string
+        -
+          name: contact_email
+          in: query
+          description: 'E-mail para contato'
+          required: false
+          schema:
+            type: string
+        -
+          name: contact_phone_number
+          in: query
+          description: 'Telefone para contato'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - organizations
+      summary: 'Retorna todos as organizações referentes'
+      operationId: DeleteOrganization
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Nome da corporação'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/organizations/{id}/join':
+    post:
+      tags:
+        - organizations
+      summary: 'Anexa um usuário a uma organização'
+      operationId: SyncOrganization
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: id
+          in: query
+          description: 'id do usuário'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/organizations/{id}/leave':
+    post:
+      tags:
+        - organizations
+      summary: 'Remove um usuário de uma organização'
+      operationId: DetachOrganization
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: id
+          in: query
+          description: 'id do usuário'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/organizations/{organization_id}/professors':
+    get:
+      tags:
+        - organizations
+        - professors
+      summary: 'Todos os professores dessa organização'
+      operationId: GetOrganizationProfessors
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - organizations
+        - professors
+      summary: 'Todos os professores dessa organização'
+      operationId: StoreOrganizationProfessors
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'nome do professor'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'descrição do professor'
+          required: true
+          schema:
+            type: string
+        -
+          name: image
+          in: query
+          description: 'foto para identificação do professor'
+          required: true
+          schema:
+            type: file
+      responses:
+        '200':
+          description: ...
+  '/organizations/{organization_id}/professors/{professor_id}':
+    get:
+      tags:
+        - organizations
+        - professors
+      summary: 'Todos os professores dessa organização'
+      operationId: GetOrganizationProfessor
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: professor_id
+          in: path
+          description: 'id do professor'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - organizations
+        - professors
+      summary: 'Todos os professores dessa organização'
+      operationId: UpdateOrganizationProfessor
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: professor_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'nome do professor'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'descrição do professor'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - organizations
+        - professors
+      summary: 'Todos os professores dessa organização'
+      operationId: DeleteOrganizationProfessor
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: professor_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/organizations/{organization_id}/settings':
+    get:
+      tags:
+        - organizations
+      summary: 'Retorna as configurações dessa organização'
+      operationId: GetOrganizationsSettings
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - organizations
+      summary: 'Atualiza as configurações da organização'
+      operationId: UpdateOrganizationSettings
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: logo
+          in: query
+          description: 'arquivo da logo'
+          required: false
+          schema:
+            type: file
+        -
+          name: primary_color
+          in: query
+          description: 'cor primária (?)'
+          required: false
+          schema:
+            type: string
+        -
+          name: accent_color
+          in: query
+          description: 'cor de realce (?)'
+          required: false
+          schema:
+            type: string
+        -
+          name: warn_color
+          in: query
+          description: 'cor de aviso (?)'
+          required: false
+          schema:
+            type: string
+        -
+          name: exhibition_name
+          in: query
+          description: 'nome de exibição'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - organizations
+      summary: 'Cria as novas configurações para a organização'
+      operationId: StoreOrganizationSettings
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+        -
+          name: logo
+          in: query
+          description: 'arquivo da logo'
+          required: true
+          schema:
+            type: file
+        -
+          name: primary_color
+          in: query
+          description: 'cor primária (?)'
+          required: true
+          schema:
+            type: string
+        -
+          name: accent_color
+          in: query
+          description: 'cor de realce (?)'
+          required: true
+          schema:
+            type: string
+        -
+          name: warn_color
+          in: query
+          description: 'cor de aviso (?)'
+          required: true
+          schema:
+            type: string
+        -
+          name: exhibition_name
+          in: query
+          description: 'nome de exibição'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/organizations/{id}/settings/{id}':
+    delete:
+      tags:
+        - organizations
+      summary: 'Retorna as configurações dessa organização'
+      operationId: DeleteOrganizationsSettings
+      parameters:
+        -
+          name: organization_id
+          in: path
+          description: 'id da organização'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  /users:
+    get:
+      tags:
+        - users
+      summary: 'Lista todas os usuários'
+      operationId: GetUsers
+      parameters:
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: name
+          in: query
+          description: 'Nome do usuário'
+          required: false
+          schema:
+            type: string
+        -
+          name: email
+          in: query
+          description: 'Email do usuário'
+          required: false
+          schema:
+            type: string
+        -
+          name: document_number
+          in: query
+          description: CPF/CNPJ
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - users
+      summary: 'Atualiza um novo usuário'
+      operationId: UpdateUser
+      parameters:
+        -
+          name: document_number
+          in: query
+          description: 'Documento CPF'
+          required: false
+          schema:
+            type: string
+        -
+          name: first_name
+          in: query
+          description: 'Primeiro nome'
+          required: false
+          schema:
+            type: string
+        -
+          name: last_name
+          in: query
+          description: 'Ultimo nome'
+          required: false
+          schema:
+            type: string
+        -
+          name: address_street
+          in: query
+          description: 'Rua onde o rapaz mora'
+          required: false
+          schema:
+            type: string
+        -
+          name: address_number
+          in: query
+          description: 'Numero da casa do rapaz'
+          required: false
+          schema:
+            type: string
+        -
+          name: address_city
+          in: query
+          description: 'Cidade onde o rapaz mora'
+          required: false
+          schema:
+            type: string
+        -
+          name: address_state
+          in: query
+          description: 'Rua onde o rapaz mora'
+          required: false
+          schema:
+            type: string
+        -
+          name: email
+          in: query
+          description: 'E-mail do cidadão'
+          required: false
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Senha do cidadão'
+          required: false
+          schema:
+            type: string
+        -
+          name: is_admin
+          in: query
+          description: 'Status de Administrador'
+          required: false
+          schema:
+            type: number
+            enum:
+              - 0
+              - 1
+        -
+          name: facebook_id
+          in: query
+          description: 'ID do Facebook'
+          required: false
+          schema:
+            type: number
+        -
+          name: google_id
+          in: query
+          description: 'ID do Google'
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - users
+      summary: 'Cria um novo usuário'
+      operationId: StoreUser
+      parameters:
+        -
+          name: document_number
+          in: query
+          description: 'Documento CPF'
+          required: true
+          schema:
+            type: string
+        -
+          name: first_name
+          in: query
+          description: 'Primeiro nome'
+          required: true
+          schema:
+            type: string
+        -
+          name: last_name
+          in: query
+          description: 'Ultimo nome'
+          required: true
+          schema:
+            type: string
+        -
+          name: address_street
+          in: query
+          description: 'Rua onde o rapaz mora'
+          required: true
+          schema:
+            type: string
+        -
+          name: address_number
+          in: query
+          description: 'Numero da casa do rapaz'
+          required: false
+          schema:
+            type: string
+        -
+          name: address_city
+          in: query
+          description: 'Cidade onde o rapaz mora'
+          required: false
+          schema:
+            type: string
+        -
+          name: address_state
+          in: query
+          description: 'Rua onde o rapaz mora'
+          required: false
+          schema:
+            type: string
+        -
+          name: email
+          in: query
+          description: 'E-mail do cidadão'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Senha do cidadão'
+          required: true
+          schema:
+            type: string
+        -
+          name: is_admin
+          in: query
+          description: 'Status de Administrador'
+          required: true
+          schema:
+            type: number
+            enum:
+              - 0
+              - 1
+      responses:
+        '200':
+          description: ...
+  '/users/{id}':
+    get:
+      tags:
+        - users
+      summary: 'Lista todas os usuários'
+      operationId: GetUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id do usuário'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - users
+      summary: 'Lista todas os usuários'
+      operationId: DeleteUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id do usuário'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...

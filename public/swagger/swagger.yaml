@@ -83,7 +83,7 @@ paths:
     post:
       tags:
         - auth
-      summary: 'Autenticação da administração'
+      summary: 'Verificação do token'
       operationId: CheckToken
       parameters:
         -
@@ -107,7 +107,7 @@ paths:
     post:
       tags:
         - auth
-      summary: 'Autenticação da administração'
+      summary: 'Reset na senha do usuário'
       operationId: ResetPassword
       parameters:
         -

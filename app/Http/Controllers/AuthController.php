@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\AccessLog;
 use App\Entities\Auth\User;
 use App\Mail\ResetPasswordMail;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +15,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+    use ApiResponse;
+
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['loginPortal',
+        $this->middleware('auth:api', ['except' => [
+            'loginPortal',
             'loginAdmin',
             'forgot',
             'checkToken',
@@ -197,13 +201,13 @@ class AuthController extends Controller
 
         Mail::to($user)->send(new ResetPasswordMail(['user' => $user, 'token' => $token]));
 
-        return response()->json([], 200);
+        return $this->success();
     }
 
     /**
      * @OA\Post(
      *     path="/auth/checkToken",
-     *     summary="Autenticação da administração",
+     *     summary="Verificação do token",
      *     operationId="CheckToken",
      *     tags={"auth"},
      *     @OA\Parameter(
@@ -233,17 +237,25 @@ class AuthController extends Controller
     public function checkToken(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|exists:password_resets,email',
-            'token' => 'required|exists:password_resets,token'
+            'email' => 'required|email',
+            'token' => 'required'
         ]);
+        $token = DB::table('password_resets')->where([
+            ['email', '=', $request->input('email')],
+            ['token', '=', $request->input('token')],
+            ['used', '=', 0]
+        ])->first();
 
-        return response()->json([], 200);
+        if($token){
+            return $this->success();
+        }
+        return $this->unprocessable();
     }
 
     /**
      * @OA\Post(
      *     path="/auth/reset/{token}",
-     *     summary="Autenticação da administração",
+     *     summary="Reset na senha do usuário",
      *     operationId="ResetPassword",
      *     tags={"auth"},
      *     @OA\Parameter(
@@ -294,20 +306,21 @@ class AuthController extends Controller
         $this->validate($request, [
             'email' => 'required|email|exists:users,email',
             'password' => 'required|string|confirmed',
-            'token' => 'required|exists:password_resets,token'
+            'token' => 'required'
         ]);
 
         $checkToken = DB::table('password_resets')->where([
-                ['token', '=' ,$token],
-                ['used' , '=', 1]
-            ])->get();
+                ['email', $request->email],
+                ['token', $token],
+                ['used' , '=', 0]
+            ])->first();
 
-        if(!isset($checkToken[0])){
+        if($checkToken){
             User::where('email', $request->input('email'))->update(['password' => Hash::make($request->password)]);
 
             DB::table('password_resets')->where('token', $token)->update(['used' => 1]);
-            return response()->json([], 200);
+            return $this->success();
         }
-        return response()->json(['res' => 'This token is invalid!'], 400);
+        return $this->unprocessable();
     }
 }

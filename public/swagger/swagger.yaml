@@ -62,12 +62,181 @@ paths:
       responses:
         '200':
           description: ...
+  '/sections/{id}/lessons':
+    get:
+      tags:
+        - lessons
+      summary: 'Lista todas as lições'
+      operationId: GetLessons
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: section_id
+          in: query
+          description: 'Id da seção'
+          required: false
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da lição'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - lessons
+      summary: 'Cria uma nova lição'
+      operationId: StoreLesson
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção no path'
+          required: true
+          schema:
+            type: integer
+        -
+          name: section_id
+          in: query
+          description: 'Id da seção na query'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da lição'
+          required: true
+          schema:
+            type: string
+        -
+          name: content
+          in: query
+          description: 'Conteúdo da lição'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/sections/{id}/lessons/{lesson_id}':
+    get:
+      tags:
+        - lessons
+      summary: 'Lista uma lição'
+      operationId: GetLesson
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - lessons
+      summary: 'Atualiza uma lição'
+      operationId: UpdateLesson
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da lição'
+          required: true
+          schema:
+            type: string
+        -
+          name: content
+          in: query
+          description: 'Conteúdo da lição'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - lessons
+      summary: 'Lista uma lição'
+      operationId: DeleteLesson
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
   /sections:
     get:
       tags:
         - sections
       summary: 'Lista todas as seções'
       operationId: GetSections
+      parameters:
+        -
+          name: name
+          in: query
+          description: 'Nome da seção'
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: ...
@@ -114,7 +283,7 @@ paths:
           description: 'Id da seção'
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: ...

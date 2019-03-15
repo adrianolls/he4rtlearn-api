@@ -31,6 +31,15 @@ class SectionController extends ApiController
      *     summary="Lista todas as seções",
      *     operationId="GetSections",
      *     tags={"sections"},
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="Nome da seção",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="...",
@@ -99,7 +108,7 @@ class SectionController extends ApiController
      *         description="Id da seção",
      *         required=true,
      *         @OA\Schema(
-     *           type="number"
+     *           type="integer"
      *         )
      *     ),
      *     @OA\Response(

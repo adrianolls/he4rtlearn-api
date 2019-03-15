@@ -75,7 +75,9 @@ class UserFieldManager extends FieldManager
     public function simpleFilters() {
         return [
             'document_number',
-            'email'
+            'first_name',
+            'last_name',
+            'is_admin'
         ];
     }
 }

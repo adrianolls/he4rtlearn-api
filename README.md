@@ -1,18 +1,3 @@
-## Configurando o projeto
-
-### Importando dependencias
-composer install
-
-### Copiando o env
-cp .env.example .env
-
-### Iniciando o Vessel
-#### Este comando deve ser rodado apenas uma vez, após o composer install
-bash vessel init
-
-### Usando o vessel
-./vessel start
-./vessel stop ou ./vessel down
 # He4rt Learning 
 
 Essa API fará parte do projeto da plataforma de ensino de inglês da He4rt Developers, a plataforma terá o foco de informatizar o cadastro de usuários no curso e disponibilizar lições e desafios para os alunos.

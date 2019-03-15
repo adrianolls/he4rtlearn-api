@@ -69,7 +69,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @return string
      */
     public function generateResetToken(){
-        $token = str_random(16);
+        $token = rand(100000,999999);
         DB::table('password_resets')->insert(
             [
                 'email' => $this->email,

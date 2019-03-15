@@ -62,6 +62,85 @@ paths:
       responses:
         '200':
           description: ...
+  /auth/forgot:
+    post:
+      tags:
+        - auth
+      summary: 'Autenticação da administração'
+      operationId: ForgotPassword
+      parameters:
+        -
+          name: email
+          in: query
+          description: 'E-mail do usuário'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  /auth/checkToken:
+    post:
+      tags:
+        - auth
+      summary: 'Autenticação da administração'
+      operationId: CheckToken
+      parameters:
+        -
+          name: email
+          in: query
+          description: 'E-mail do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: token
+          in: query
+          description: 'Token enviado no email do usuário'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/auth/reset/{token}':
+    post:
+      tags:
+        - auth
+      summary: 'Autenticação da administração'
+      operationId: ResetPassword
+      parameters:
+        -
+          name: token
+          in: path
+          description: 'Token enviado no email do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: email
+          in: query
+          description: 'E-mail do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Nova senha do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: password_confirmation
+          in: query
+          description: 'Confirmação da nova senha'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
   '/sections/{id}/lessons':
     get:
       tags:

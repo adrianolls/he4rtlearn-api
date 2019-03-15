@@ -19,6 +19,9 @@ $router->post('auth/login','AuthController@loginPortal');
 $router->post('admin/auth/login','AuthController@loginAdmin');
 $router->post('auth/refresh','AuthController@refresh');
 $router->post('auth/logout','AuthController@logout');
+$router->post('auth/forgot', 'AuthController@forgot');
+$router->post('auth/checkToken', 'AuthController@checkToken');
+$router->post('auth/reset/{token}', 'AuthController@reset');
 
 $router->get('users','User\\UserController@index');
 $router->post('users','User\\UserController@store');

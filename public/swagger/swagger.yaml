@@ -62,6 +62,115 @@ paths:
       responses:
         '200':
           description: ...
+  /sections:
+    get:
+      tags:
+        - sections
+      summary: 'Lista todas as seções'
+      operationId: GetSections
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - sections
+      summary: 'Cria uma nova seção'
+      operationId: StoreSection
+      parameters:
+        -
+          name: name
+          in: query
+          description: 'Nome da seção'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição da seção'
+          required: true
+          schema:
+            type: string
+        -
+          name: order
+          in: query
+          description: 'Ordem da seção'
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/sections/{id}':
+    get:
+      tags:
+        - sections
+      summary: 'Lista uma seções'
+      operationId: GetSection
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - sections
+      summary: 'Atualiza uma seção'
+      operationId: UpdateSection
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da seção'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição da seção'
+          required: false
+          schema:
+            type: string
+        -
+          name: order
+          in: query
+          description: 'Ordem da seção'
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - sections
+      summary: 'Apaga uma seção'
+      operationId: DeleteSection
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id da seção'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
   /users/me:
     get:
       tags:

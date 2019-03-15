@@ -26,3 +26,9 @@ $router->get('users/me','User\\MeController@me');
 $router->put('users/me','User\\MeController@update');
 $router->get('users/{id}','User\\UserController@show');
 $router->delete('users/{id}','User\\UserController@destroy');
+
+$router->get('sections', 'Section\\SectionController@index');
+$router->post('sections', 'Section\\SectionController@store');
+$router->get('sections/{id}', 'Section\\SectionController@show');
+$router->put('sections/{id}', 'Section\\SectionController@update');
+$router->delete('sections/{id}', 'Section\\SectionController@destroy');

@@ -18,7 +18,7 @@ class SectionFieldManager extends FieldManager
             'rules' => 'string',
         ],
         'description' => [
-            'rules' => 'text',
+            'rules' => 'string',
         ],
         'order' => [
             'rules' => 'integer',
@@ -30,7 +30,6 @@ class SectionFieldManager extends FieldManager
         $fields = [
             'name' => 'required',
             'description' => 'required',
-            'order' => 'required'
         ];
 
         return $this->rules($fields);

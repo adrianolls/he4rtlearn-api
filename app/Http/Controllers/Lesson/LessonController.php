@@ -206,7 +206,7 @@ class LessonController extends ApiController
      *     )
      * )
      */
-    public function updateLesson(Request $request, int $section_id, int $lesson_id)
+    public function putLesson(Request $request, int $section_id, int $lesson_id)
     {
         $request->merge(['section_id' => $section_id]);
         $lesson = Lesson::where([
@@ -249,9 +249,8 @@ class LessonController extends ApiController
      *     )
      * )
      */
-    public function destroyLesson(int $section_id, int $lesson_id)
+    public function deleteLesson(int $section_id, int $lesson_id)
     {
-
         $lesson = Lesson::where([
             ['id', '=', $lesson_id],
             ['section_id', '=', $section_id],

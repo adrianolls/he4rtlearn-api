@@ -141,6 +141,195 @@ paths:
       responses:
         '200':
           description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/challenges':
+    get:
+      tags:
+        - challenges
+      summary: 'Lista todos os desafios'
+      operationId: GetChallenges
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: name
+          in: query
+          description: 'Nome do desafio'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do desafio'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - challenges
+      summary: 'Cria um novo desafio'
+      operationId: PostChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome do desafio'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do desafio'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}':
+    get:
+      tags:
+        - challenges
+      summary: 'Lista um desafio'
+      operationId: GetChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - challenges
+      summary: 'Lista um desafio'
+      operationId: UpdateChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome do desafio'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do desafio'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - challenges
+      summary: 'Lista um desafio'
+      operationId: DeleteChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
   '/sections/{section_id}/lessons':
     get:
       tags:

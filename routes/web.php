@@ -39,5 +39,11 @@ $router->delete('sections/{section_id}', 'Section\\SectionController@destroy');
 $router->get('sections/{section_id}/lessons', 'Lesson\\LessonController@getLessons');
 $router->post('sections/{section_id}/lessons', 'Lesson\\LessonController@postLesson');
 $router->get('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@getLesson');
-$router->put('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@updateLesson');
-$router->delete('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@destroyLesson');
+$router->put('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@putLesson');
+$router->delete('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@deleteLesson');
+
+$router->get('sections/{section_id}/lessons/{lesson_id}/challenges', 'Challenge\\ChallengeController@getChallenges');
+$router->post('sections/{section_id}/lessons/{lesson_id}/challenges', 'Challenge\\ChallengeController@postChallenge');
+$router->get('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@getChallenge');
+$router->put('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@putChallenge');
+$router->delete('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@deleteChallenge');

@@ -34,7 +34,7 @@ class LessonController extends ApiController
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -80,7 +80,7 @@ class LessonController extends ApiController
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção no path",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -125,7 +125,7 @@ class LessonController extends ApiController
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"
@@ -167,7 +167,7 @@ class LessonController extends ApiController
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -228,7 +228,7 @@ class LessonController extends ApiController
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"

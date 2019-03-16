@@ -9,6 +9,7 @@
 namespace App\Entities\Lesson;
 
 
+use App\Entities\Challenge\Challenge;
 use App\Entities\Section\Section;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,6 @@ class Lesson extends Model
 
     public function challenges()
     {
-        return $this->hasMany(/*TODO challenge class here*/);
+        return $this->hasMany(Challenge::class);
     }
 }

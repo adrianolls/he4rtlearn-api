@@ -28,13 +28,13 @@ class SectionController extends ApiController
     /**
      * @OA\Get(
      *     path="/sections",
-     *     summary="Lista todas as seções",
+     *     summary="Lista todas as sessões",
      *     operationId="GetSections",
      *     tags={"sections"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
-     *         description="Nome da seção",
+     *         description="Nome da sessão",
      *         required=false,
      *         @OA\Schema(
      *           type="string",
@@ -54,13 +54,13 @@ class SectionController extends ApiController
     /**
      * @OA\Post(
      *     path="/sections",
-     *     summary="Cria uma nova seção",
+     *     summary="Cria uma nova sessão",
      *     operationId="StoreSection",
      *     tags={"sections"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
-     *         description="Nome da seção",
+     *         description="Nome da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="string",
@@ -69,7 +69,7 @@ class SectionController extends ApiController
      *     @OA\Parameter(
      *         name="description",
      *         in="query",
-     *         description="Descrição da seção",
+     *         description="Descrição da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="string",
@@ -78,7 +78,7 @@ class SectionController extends ApiController
      *    @OA\Parameter(
      *         name="order",
      *         in="query",
-     *         description="Ordem da seção",
+     *         description="Ordem da sessão",
      *         required=false,
      *         @OA\Schema(
      *           type="integer",
@@ -99,13 +99,13 @@ class SectionController extends ApiController
     /**
      * @OA\Get(
      *     path="/sections/{section_id}",
-     *     summary="Lista uma seções",
+     *     summary="Lista uma sessões",
      *     operationId="GetSection",
      *     tags={"sections"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"
@@ -125,13 +125,13 @@ class SectionController extends ApiController
     /**
      * @OA\Put(
      *     path="/sections/{section_id}",
-     *     summary="Atualiza uma seção",
+     *     summary="Atualiza uma sessão",
      *     operationId="UpdateSection",
      *     tags={"sections"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -140,7 +140,7 @@ class SectionController extends ApiController
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
-     *         description="Nome da seção",
+     *         description="Nome da sessão",
      *         required=false,
      *         @OA\Schema(
      *           type="string",
@@ -149,7 +149,7 @@ class SectionController extends ApiController
      *     @OA\Parameter(
      *         name="description",
      *         in="query",
-     *         description="Descrição da seção",
+     *         description="Descrição da sessão",
      *         required=false,
      *         @OA\Schema(
      *           type="string",
@@ -158,7 +158,7 @@ class SectionController extends ApiController
      *    @OA\Parameter(
      *         name="order",
      *         in="query",
-     *         description="Ordem da seção",
+     *         description="Ordem da sessão",
      *         required=false,
      *         @OA\Schema(
      *           type="integer",
@@ -179,13 +179,13 @@ class SectionController extends ApiController
     /**
      * @OA\Delete(
      *     path="/sections/{section_id}",
-     *     summary="Apaga uma seção",
+     *     summary="Apaga uma sessão",
      *     operationId="DeleteSection",
      *     tags={"sections"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
-     *         description="Id da seção",
+     *         description="Id da sessão",
      *         required=true,
      *         @OA\Schema(
      *           type="number"

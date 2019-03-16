@@ -203,10 +203,13 @@ class ChallengeController extends ApiController
      */
     public function getChallenge(int $section_id, int $lesson_id, $challenge_id)
     {
-        $challenge = Challenge::where([
-            ['id', '=', $challenge_id],
-            ['lesson_id', '=', $lesson_id]
-        ])->first();
+        $challenge = Challenge::select(['lesson_challenges.id','lesson_challenges.name', 'description'])
+            ->join('lessons', 'lessons.id', '=', 'lesson_challenges.lesson_id')
+            ->where([
+                ['lesson_challenges.id', '=', $challenge_id],
+                ['lessons.section_id', '=', $section_id],
+                ['lesson_challenges.lesson_id', '=', $lesson_id]
+            ])->first();
 
         if(!$challenge){
             return $this->notFound(['error' => 'This challenge doesnt exists or you are at the wrong lesson.']);
@@ -274,10 +277,14 @@ class ChallengeController extends ApiController
     public function putChallenge(Request $request, int $section_id, int $lesson_id, int $challenge_id)
     {
         $request->merge(['lesson_id' => $lesson_id]);
-        $challenge = Challenge::where([
-            ['id', '=', $challenge_id],
-            ['lesson_id', '=', $lesson_id]
-        ])->first();
+        $challenge = Challenge::select(['lesson_challenges.id','lesson_challenges.name', 'description'])
+            ->join('lessons', 'lessons.id', '=', 'lesson_challenges.lesson_id')
+            ->where([
+                ['lesson_challenges.id', '=', $challenge_id],
+                ['lessons.section_id', '=', $section_id],
+                ['lesson_challenges.lesson_id', '=', $lesson_id]
+            ])->first();
+
         if(!$challenge){
             return $this->notFound(['error' => 'This challenge doesnt exists or you are at the wrong lesson.']);
         }
@@ -325,10 +332,13 @@ class ChallengeController extends ApiController
      */
     public function deleteChallenge(int $section_id, int $lesson_id, int $challenge_id)
     {
-        $challenge = Challenge::where([
-            ['id', '=', $challenge_id],
-            ['lesson_id', '=', $lesson_id]
-        ])->first();
+        $challenge = Challenge::select(['lesson_challenges.id','lesson_challenges.name', 'description'])
+            ->join('lessons', 'lessons.id', '=', 'lesson_challenges.lesson_id')
+            ->where([
+                ['lesson_challenges.id', '=', $challenge_id],
+                ['lessons.section_id', '=', $section_id],
+                ['lesson_challenges.lesson_id', '=', $lesson_id]
+            ])->first();
 
         if(!$challenge){
             return $this->notFound(['error' => 'This challenge doesnt exists or you are at the wrong lesson.']);

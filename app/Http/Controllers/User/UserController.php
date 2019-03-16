@@ -96,15 +96,6 @@ class UserController extends ApiController
      *     operationId="StoreUser",
      *     tags={"users"},
      *     @OA\Parameter(
-     *         name="document_number",
-     *         in="query",
-     *         description="Documento CPF",
-     *         required=true,
-     *         @OA\Schema(
-     *           type="string"
-     *         )
-     *     ),
-     *     @OA\Parameter(
      *         name="first_name",
      *         in="query",
      *         description="Primeiro nome",
@@ -122,12 +113,20 @@ class UserController extends ApiController
      *           type="string"
      *         )
      *     ),
-     *
+     *     @OA\Parameter(
+     *         name="document_number",
+     *         in="query",
+     *         description="Documento CPF",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *     ),
      *     @OA\Parameter(
      *         name="address_street",
      *         in="query",
      *         description="Rua onde o rapaz mora",
-     *         required=true,
+     *         required=false,
      *        @OA\Schema(
      *           type="string"
      *         )
@@ -198,7 +197,7 @@ class UserController extends ApiController
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|string'
+            'password' => 'required|string',
         ]);
         $all = $request->all();
         $all['password'] = Hash::make($all['password']);

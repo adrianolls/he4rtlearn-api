@@ -24,7 +24,7 @@ abstract class FieldManager
         /* Adiciona as regras extras as regras padrão do objeto */
         foreach ($extraRules as $field => $rule) {
 
-            if (! key_exists($this->getOnlyField($field), $rules)) {
+            if (!key_exists($this->getOnlyField($field), $rules)) {
                 continue;
             }
 
@@ -76,7 +76,7 @@ abstract class FieldManager
     {
         $rules = [];
         foreach ($this->fields as $field => $extra) {
-            if (! key_exists('rules', $extra)) {
+            if (!key_exists('rules', $extra)) {
                 continue;
             }
 
@@ -101,7 +101,7 @@ abstract class FieldManager
         $transformed = [];
 
         foreach ($transformation as $name => $new_name) {
-            if (! key_exists($name, $array)) {
+            if (!key_exists($name, $array)) {
 
                 if (key_exists($new_name, $array)) {
                     $transformed[$name] = $array[$new_name];
@@ -131,7 +131,7 @@ abstract class FieldManager
 
         foreach ($transformation as $name => $new_name) {
 
-            if (! key_exists($name, $array)) {
+            if (!key_exists($name, $array)) {
 
                 foreach ($array as $field => $rule) {
                     if ($this->getOnlyField($field) == $name) {
@@ -182,7 +182,7 @@ abstract class FieldManager
     {
         $autocomplete = [];
         foreach ($this->fields as $field => $extra) {
-            if (! key_exists('autocomplete', $extra)) {
+            if (!key_exists('autocomplete', $extra)) {
                 continue;
             }
 
@@ -197,6 +197,18 @@ abstract class FieldManager
      *
      * @return array
      */
+
+    public function index()
+    {
+        return $this->rules();
+    }
+
+    /**
+     * Validate store action
+     *
+     * @return array
+     */
+
     public function store()
     {
         return $this->rules();
@@ -234,7 +246,8 @@ abstract class FieldManager
         ];
     }
 
-    public function simpleFilters() {
+    public function simpleFilters()
+    {
         return [];
     }
 }

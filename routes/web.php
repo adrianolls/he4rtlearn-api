@@ -32,12 +32,12 @@ $router->delete('users/{id}','User\\UserController@destroy');
 
 $router->get('sections', 'Section\\SectionController@index');
 $router->post('sections', 'Section\\SectionController@store');
-$router->get('sections/{id}', 'Section\\SectionController@show');
-$router->put('sections/{id}', 'Section\\SectionController@update');
-$router->delete('sections/{id}', 'Section\\SectionController@destroy');
+$router->get('sections/{section_id}', 'Section\\SectionController@show');
+$router->put('sections/{section_id}', 'Section\\SectionController@update');
+$router->delete('sections/{section_id}', 'Section\\SectionController@destroy');
 
-$router->get('sections/{id}/lessons', 'Lesson\\LessonController@index');
-$router->post('sections/{id}/lessons', 'Lesson\\LessonController@store');
-$router->get('sections/{id}/lessons/{lesson_id}', 'Lesson\\LessonController@getLesson');
-$router->put('sections/{id}/lessons/{lesson_id}', 'Lesson\\LessonController@updateLesson');
-$router->delete('sections/{id}/lessons/{lesson_id}', 'Lesson\\LessonController@destroyLesson');
+$router->get('sections/{section_id}/lessons', 'Lesson\\LessonController@getLessons');
+$router->post('sections/{section_id}/lessons', 'Lesson\\LessonController@postLesson');
+$router->get('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@getLesson');
+$router->put('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@updateLesson');
+$router->delete('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@destroyLesson');

@@ -112,7 +112,7 @@ paths:
       parameters:
         -
           name: token
-          in: path
+          in: query
           description: 'Token enviado no email do usuário'
           required: true
           schema:
@@ -141,7 +141,7 @@ paths:
       responses:
         '200':
           description: ...
-  '/sections/{id}/lessons':
+  '/sections/{section_id}/lessons':
     get:
       tags:
         - lessons
@@ -149,7 +149,7 @@ paths:
       operationId: GetLessons
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -164,13 +164,6 @@ paths:
             type: array
             items:
               type: string
-        -
-          name: section_id
-          in: query
-          description: 'Id da seção'
-          required: false
-          schema:
-            type: integer
         -
           name: name
           in: query
@@ -188,16 +181,9 @@ paths:
       operationId: StoreLesson
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção no path'
-          required: true
-          schema:
-            type: integer
-        -
-          name: section_id
-          in: query
-          description: 'Id da seção na query'
           required: true
           schema:
             type: integer
@@ -218,7 +204,7 @@ paths:
       responses:
         '200':
           description: ...
-  '/sections/{id}/lessons/{lesson_id}':
+  '/sections/{section_id}/lessons/{lesson_id}':
     get:
       tags:
         - lessons
@@ -226,7 +212,7 @@ paths:
       operationId: GetLesson
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -249,7 +235,7 @@ paths:
       operationId: UpdateLesson
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -286,7 +272,7 @@ paths:
       operationId: DeleteLesson
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -349,7 +335,7 @@ paths:
       responses:
         '200':
           description: ...
-  '/sections/{id}':
+  '/sections/{section_id}':
     get:
       tags:
         - sections
@@ -357,7 +343,7 @@ paths:
       operationId: GetSection
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -373,7 +359,7 @@ paths:
       operationId: UpdateSection
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -410,7 +396,7 @@ paths:
       operationId: DeleteSection
       parameters:
         -
-          name: id
+          name: section_id
           in: path
           description: 'Id da seção'
           required: true
@@ -423,8 +409,8 @@ paths:
     get:
       tags:
         - users
-      summary: 'Lista o usuário'
-      operationId: GetUser
+      summary: 'Retorna o usuário logado'
+      operationId: GetAuthUser
       responses:
         '200':
           description: ...
@@ -435,27 +421,27 @@ paths:
       tags:
         - users
       summary: 'Atualiza o usuário'
-      operationId: UpdateUser
+      operationId: UpdateAuthUser
       parameters:
-        -
-          name: document_number
-          in: query
-          description: 'Documento CPF'
-          required: false
-          schema:
-            type: string
         -
           name: first_name
           in: query
           description: 'Primeiro nome'
-          required: true
+          required: false
           schema:
             type: string
         -
           name: last_name
           in: query
           description: 'Ultimo nome'
-          required: true
+          required: false
+          schema:
+            type: string
+        -
+          name: document_number
+          in: query
+          description: 'Documento CPF'
+          required: false
           schema:
             type: string
         -
@@ -490,27 +476,6 @@ paths:
           name: email
           in: query
           description: 'E-mail do cidadão'
-          required: true
-          schema:
-            type: string
-        -
-          name: old_password
-          in: query
-          description: 'Senha atual do usuário'
-          required: false
-          schema:
-            type: string
-        -
-          name: password
-          in: query
-          description: 'Nova senha do usuário'
-          required: false
-          schema:
-            type: string
-        -
-          name: password_confirmation
-          in: query
-          description: 'Confirmação da nova senha do usuário'
           required: false
           schema:
             type: string
@@ -673,13 +638,6 @@ paths:
       operationId: StoreUser
       parameters:
         -
-          name: document_number
-          in: query
-          description: 'Documento CPF'
-          required: true
-          schema:
-            type: string
-        -
           name: first_name
           in: query
           description: 'Primeiro nome'
@@ -694,10 +652,17 @@ paths:
           schema:
             type: string
         -
+          name: document_number
+          in: query
+          description: 'Documento CPF'
+          required: false
+          schema:
+            type: string
+        -
           name: address_street
           in: query
           description: 'Rua onde o rapaz mora'
-          required: true
+          required: false
           schema:
             type: string
         -

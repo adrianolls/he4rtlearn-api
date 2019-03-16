@@ -37,6 +37,11 @@ class SectionFieldManager extends FieldManager
 
     public function simpleFilters()
     {
-        return ['name'];
+        return [
+            [
+                'field' => 'name',
+                'type' => 'LIKE'
+            ]
+        ];
     }
 }

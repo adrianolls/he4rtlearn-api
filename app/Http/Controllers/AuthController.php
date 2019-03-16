@@ -254,13 +254,13 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/auth/reset/{token}",
+     *     path="/auth/reset",
      *     summary="Reset na senha do usuário",
      *     operationId="ResetPassword",
      *     tags={"auth"},
      *     @OA\Parameter(
      *         name="token",
-     *         in="path",
+     *         in="query",
      *         description="Token enviado no email do usuário",
      *         required=true,
      *         @OA\Schema(
@@ -300,9 +300,9 @@ class AuthController extends Controller
      *     )
      * )
      */
-    public function reset(Request $request, $token)
+    public function reset(Request $request)
     {
-        $request->merge(['token' => $token]);
+
         $this->validate($request, [
             'email' => 'required|email|exists:users,email',
             'password' => 'required|string|confirmed',
@@ -310,17 +310,20 @@ class AuthController extends Controller
         ]);
 
         $checkToken = DB::table('password_resets')->where([
-                ['email', $request->email],
-                ['token', $token],
+                ['email', $request->input('email')],
+                ['token', $request->input('token')],
                 ['used' , '=', 0]
             ])->first();
 
-        if($checkToken){
-            User::where('email', $request->input('email'))->update(['password' => Hash::make($request->password)]);
-
-            DB::table('password_resets')->where('token', $token)->update(['used' => 1]);
-            return $this->success();
+        if(!$checkToken){
+            return $this->unprocessable(['This token doest exists or is already used.']);
         }
-        return $this->unprocessable();
+
+        User::where('email', $request->input('email'))->update(
+            ['password' => Hash::make($request->input('password'))]
+        );
+
+        DB::table('password_resets')->where('token', $request->input('token'))->update(['used' => 1]);
+        return $this->success();
     }
 }

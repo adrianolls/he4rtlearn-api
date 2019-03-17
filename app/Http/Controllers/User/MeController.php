@@ -198,6 +198,20 @@ class MeController extends Controller
         return $this->success(['res' => 'Your password has been changed.']);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/users/me/lessons",
+     *     summary="Retorna as aulas do usuário logado",
+     *     operationId="GetAuthUserLessons",
+     *     tags={"users","lessons"},
+     *     security={{"apiToken":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="...",
+     *     ),
+     *  )
+     */
+
     public function getFinishedLessons(){
         return $this->success(Auth::user()->lessons()->paginate(15));
     }

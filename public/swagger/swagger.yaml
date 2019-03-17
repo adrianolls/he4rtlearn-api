@@ -263,7 +263,7 @@ paths:
         -
           name: answer_id
           in: path
-          description: 'Id do desafio'
+          description: 'Id da resposta'
           required: true
           schema:
             type: integer
@@ -300,7 +300,7 @@ paths:
         -
           name: answer_id
           in: path
-          description: 'Id do desafio'
+          description: 'Id da resposta'
           required: true
           schema:
             type: integer
@@ -351,7 +351,7 @@ paths:
         -
           name: answer_id
           in: path
-          description: 'Id do desafio'
+          description: 'Id da resposta'
           required: true
           schema:
             type: integer
@@ -694,6 +694,58 @@ paths:
       responses:
         '200':
           description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/finished':
+    get:
+      tags:
+        - users
+        - lessons
+      summary: 'Retorna todos os alunos que terminaram essa aula'
+      operationId: GetLessonsFinished
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - users
+        - lessons
+      summary: 'Insere um novo usuário que terminou essa aula'
+      operationId: PostLessonsFinished
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
   /sections:
     get:
       tags:
@@ -919,6 +971,19 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+  /users/me/lessons:
+    get:
+      tags:
+        - users
+        - lessons
+      summary: 'Retorna as aulas do usuário logado'
+      operationId: GetAuthUserLessons
       responses:
         '200':
           description: ...

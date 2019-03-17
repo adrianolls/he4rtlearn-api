@@ -28,6 +28,7 @@ $router->post('users','User\\UserController@store');
 $router->get('users/me','User\\MeController@me');
 $router->put('users/me','User\\MeController@update');
 $router->put('users/me/change', 'User\\MeController@change');
+$router->get('users/me/lessons','User\\MeController@getFinishedLessons');
 
 $router->get('users/{id}','User\\UserController@show');
 $router->delete('users/{id}','User\\UserController@destroy');
@@ -43,6 +44,10 @@ $router->post('sections/{section_id}/lessons', 'Lesson\\LessonController@postLes
 $router->get('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@getLesson');
 $router->put('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@putLesson');
 $router->delete('sections/{section_id}/lessons/{lesson_id}', 'Lesson\\LessonController@deleteLesson');
+
+$router->get('sections/{section_id}/lessons/{lesson_id}/finished','Lesson\\LessonController@getFinishedLessons');
+$router->post('sections/{section_id}/lessons/{lesson_id}/finished','Lesson\\LessonController@postFinishedLessons');
+
 
 $router->get('sections/{section_id}/lessons/{lesson_id}/challenges', 'Challenge\\ChallengeController@getChallenges');
 $router->post('sections/{section_id}/lessons/{lesson_id}/challenges', 'Challenge\\ChallengeController@postChallenge');

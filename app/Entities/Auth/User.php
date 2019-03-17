@@ -3,6 +3,7 @@
 namespace App\Entities\Auth;
 
 use App\Entities\AccessLog;
+use App\Entities\Lesson\Lesson;
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -83,5 +84,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function logs(){
         return $this->hasMany(AccessLog::class);
+    }
+
+    public function lessons(){
+        return $this->belongsToMany(
+            Lesson::class,
+            'lessons_finished',
+            'user_id',
+            'lesson_id'
+        );
     }
 }

@@ -9,6 +9,7 @@
 namespace App\Entities\Lesson;
 
 
+use App\Entities\Auth\User;
 use App\Entities\Lesson\Challenge\Challenge;
 use App\Entities\Section\Section;
 use Illuminate\Database\Eloquent\Model;
@@ -29,5 +30,14 @@ class Lesson extends Model
     public function challenges()
     {
         return $this->hasMany(Challenge::class);
+    }
+
+    public function finished(){
+        return $this->belongsToMany(
+            User::class,
+            'lessons_finished',
+            'lesson_id',
+            'user_id'
+        );
     }
 }

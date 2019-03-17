@@ -28,7 +28,7 @@ class AnswersController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers",
      *     summary="Lista todas as respostas do desafio",
      *     operationId="GetChallengesAnswers",
-     *     tags={"challenges","answers"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -96,7 +96,7 @@ class AnswersController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers",
      *     summary="Lista todas as respostas do desafio",
      *     operationId="StoreChallengesAnswers",
-     *     tags={"challenges","answers"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -167,7 +167,7 @@ class AnswersController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers/{answer_id}",
      *     summary="Retorna uma resposta de um desafio",
      *     operationId="GetChallengesAnswer",
-     *     tags={"challenges","answers"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -198,7 +198,7 @@ class AnswersController extends ApiController
      *     @OA\Parameter(
      *         name="answer_id",
      *         in="path",
-     *         description="Id do desafio",
+     *         description="Id da resposta",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -229,7 +229,7 @@ class AnswersController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers/{answer_id}",
      *     summary="Lista todas as respostas do desafio",
      *     operationId="StoreChallengesAnswers",
-     *     tags={"challenges","answers"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -260,7 +260,7 @@ class AnswersController extends ApiController
      *     @OA\Parameter(
      *         name="answer_id",
      *         in="path",
-     *         description="Id do desafio",
+     *         description="Id da resposta",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -307,7 +307,7 @@ class AnswersController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers/{answer_id}",
      *     summary="Retorna uma resposta de um desafio",
      *     operationId="DeleteChallengesAnswer",
-     *     tags={"challenges","answers"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -338,7 +338,7 @@ class AnswersController extends ApiController
      *     @OA\Parameter(
      *         name="answer_id",
      *         in="path",
-     *         description="Id do desafio",
+     *         description="Id da resposta",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",

@@ -144,7 +144,6 @@ paths:
   '/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers':
     get:
       tags:
-        - challenges
         - answers
       summary: 'Lista todas as respostas do desafio'
       operationId: GetChallengesAnswers
@@ -191,7 +190,6 @@ paths:
           description: ...
     post:
       tags:
-        - challenges
         - answers
       summary: 'Lista todas as respostas do desafio'
       operationId: StoreChallengesAnswers
@@ -237,7 +235,6 @@ paths:
   '/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers/{answer_id}':
     get:
       tags:
-        - challenges
         - answers
       summary: 'Retorna uma resposta de um desafio'
       operationId: GetChallengesAnswer
@@ -275,7 +272,6 @@ paths:
           description: ...
     put:
       tags:
-        - challenges
         - answers
       summary: 'Lista todas as respostas do desafio'
       operationId: StoreChallengesAnswers
@@ -327,7 +323,6 @@ paths:
           description: ...
     delete:
       tags:
-        - challenges
         - answers
       summary: 'Retorna uma resposta de um desafio'
       operationId: DeleteChallengesAnswer

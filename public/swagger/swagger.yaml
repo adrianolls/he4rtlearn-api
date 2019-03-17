@@ -141,6 +141,223 @@ paths:
       responses:
         '200':
           description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers':
+    get:
+      tags:
+        - answers
+      summary: 'Lista todas as respostas do desafio'
+      operationId: GetChallengesAnswers
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: status
+          in: query
+          description: 'Nome do desafio'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - answers
+      summary: 'Lista todas as respostas do desafio'
+      operationId: StoreChallengesAnswers
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: description
+          in: query
+          description: 'Descrição da resposta'
+          required: true
+          schema:
+            type: string
+        -
+          name: status
+          in: query
+          description: 'Se a resposta é verdadeira (apenas uma)'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers/{answer_id}':
+    get:
+      tags:
+        - answers
+      summary: 'Retorna uma resposta de um desafio'
+      operationId: GetChallengesAnswer
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: answer_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - answers
+      summary: 'Lista todas as respostas do desafio'
+      operationId: StoreChallengesAnswers
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: answer_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: description
+          in: query
+          description: 'Descrição da resposta'
+          required: false
+          schema:
+            type: string
+        -
+          name: status
+          in: query
+          description: 'Se a resposta é verdadeira (apenas uma)'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - answers
+      summary: 'Retorna uma resposta de um desafio'
+      operationId: DeleteChallengesAnswer
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: answer_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
   '/sections/{section_id}/lessons/{lesson_id}/challenges':
     get:
       tags:

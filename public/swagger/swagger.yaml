@@ -674,6 +674,40 @@ paths:
       security:
         -
           apiToken: []
+  /users/me/change:
+    put:
+      tags:
+        - users
+      summary: 'Atualiza a senha do usuário'
+      operationId: UpdateAuthUserPassword
+      parameters:
+        -
+          name: old_password
+          in: query
+          description: 'Senha antiga do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Nova senha do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: password_confirmation
+          in: query
+          description: 'Confirmação da senha'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
   /users:
     get:
       tags:

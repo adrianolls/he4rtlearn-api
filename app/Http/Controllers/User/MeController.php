@@ -133,26 +133,69 @@ class MeController extends Controller
             'first_name' => 'string',
             'last_name' => 'string',
             'email' => 'email',
-            'old_password' => 'string',
-            'password' => 'confirmed'
         ]);
-        
-        if($request->has('old_password'))
-        {
-            $user = User::find(Auth::user()->id);
-            if(! Hash::check($request->input('old_password'), $user->password)){
-                return response()->json(['error' => 'Incorrect Password'], 401);
-            }
 
-            $all = $request->all();
-            $all['password'] = Hash::make($all['password']);
-            $user->update($all);
-
-            return $this->success($user);
-        }
-
-        User::find(Auth::user()->id)->update($request->except(['password', 'password_confirmation']));
+        User::find(Auth::user()->id)->update($request->all());
 
         return $this->success(User::find(Auth::user()->id));
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/users/me/change",
+     *     summary="Atualiza a senha do usuário",
+     *     operationId="UpdateAuthUserPassword",
+     *     tags={"users"},
+     *     security={{"apiToken":{}}},
+     *     @OA\Parameter(
+     *         name="old_password",
+     *         in="query",
+     *         description="Senha antiga do usuário",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="password",
+     *         in="query",
+     *         description="Nova senha do usuário",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="password_confirmation",
+     *         in="query",
+     *         description="Confirmação da senha",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="...",
+     *     ),
+     *  )
+     */
+    public function change(Request $request)
+    {
+        $this->validate($request, [
+            'old_password' => 'required|string',
+            'password' => 'required|string|confirmed'
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        if(! Hash::check($request->input('old_password'), $user->password)){
+            return $this->unauthorized(['error' => 'Incorrect Password']);
+        }
+        $password = [
+            'password' => Hash::make($request->input('password'))
+        ];
+        $user->update($password);
+
+        return $this->success(['res' => 'Your password has been changed.']);
     }
 }

@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Challenge;
 
 
-use App\Entities\Challenge\Challenge;
+use App\Entities\Lesson\Challenge\Challenge;
 use App\Entities\Lesson\Lesson;
 use App\FieldManagers\Challenge\ChallengeFieldManager;
 use App\Http\Controllers\ApiController;

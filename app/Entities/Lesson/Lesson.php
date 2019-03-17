@@ -9,7 +9,7 @@
 namespace App\Entities\Lesson;
 
 
-use App\Entities\Challenge\Challenge;
+use App\Entities\Lesson\Challenge\Challenge;
 use App\Entities\Section\Section;
 use Illuminate\Database\Eloquent\Model;
 

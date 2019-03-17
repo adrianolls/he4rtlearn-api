@@ -6,7 +6,7 @@
  * Time: 16:10
  */
 
-namespace App\Entities\Challenge;
+namespace App\Entities\Lesson\Challenge;
 
 
 use App\Entities\Lesson\Lesson;
@@ -29,6 +29,6 @@ class Challenge extends Model
 
     public function answers()
     {
-        return $this->hasMany(/*TODO ChallengeAnswers::class*/);
+        return $this->hasMany(Answer::class);
     }
 }

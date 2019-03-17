@@ -62,12 +62,544 @@ paths:
       responses:
         '200':
           description: ...
+  /auth/forgot:
+    post:
+      tags:
+        - auth
+      summary: 'Autenticação da administração'
+      operationId: ForgotPassword
+      parameters:
+        -
+          name: email
+          in: query
+          description: 'E-mail do usuário'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  /auth/checkToken:
+    post:
+      tags:
+        - auth
+      summary: 'Verificação do token'
+      operationId: CheckToken
+      parameters:
+        -
+          name: email
+          in: query
+          description: 'E-mail do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: token
+          in: query
+          description: 'Token enviado no email do usuário'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  /auth/reset:
+    post:
+      tags:
+        - auth
+      summary: 'Reset na senha do usuário'
+      operationId: ResetPassword
+      parameters:
+        -
+          name: token
+          in: query
+          description: 'Token enviado no email do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: email
+          in: query
+          description: 'E-mail do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          description: 'Nova senha do usuário'
+          required: true
+          schema:
+            type: string
+        -
+          name: password_confirmation
+          in: query
+          description: 'Confirmação da nova senha'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/challenges':
+    get:
+      tags:
+        - challenges
+      summary: 'Lista todos os desafios'
+      operationId: GetChallenges
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: name
+          in: query
+          description: 'Nome do desafio'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do desafio'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - challenges
+      summary: 'Cria um novo desafio'
+      operationId: PostChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome do desafio'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do desafio'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}':
+    get:
+      tags:
+        - challenges
+      summary: 'Lista um desafio'
+      operationId: GetChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - challenges
+      summary: 'Lista um desafio'
+      operationId: UpdateChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome do desafio'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição do desafio'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - challenges
+      summary: 'Lista um desafio'
+      operationId: DeleteChallenge
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: challenge_id
+          in: path
+          description: 'Id do desafio'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}/lessons':
+    get:
+      tags:
+        - lessons
+      summary: 'Lista todas as lições'
+      operationId: GetLessons
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: name
+          in: query
+          description: 'Nome da lição'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - lessons
+      summary: 'Cria uma nova lição'
+      operationId: StoreLesson
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da lição'
+          required: true
+          schema:
+            type: string
+        -
+          name: content
+          in: query
+          description: 'Conteúdo da lição'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}/lessons/{lesson_id}':
+    get:
+      tags:
+        - lessons
+      summary: 'Lista uma lição'
+      operationId: GetLesson
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - lessons
+      summary: 'Atualiza uma lição'
+      operationId: UpdateLesson
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da lição'
+          required: true
+          schema:
+            type: string
+        -
+          name: content
+          in: query
+          description: 'Conteúdo da lição'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - lessons
+      summary: 'Lista uma lição'
+      operationId: DeleteLesson
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  /sections:
+    get:
+      tags:
+        - sections
+      summary: 'Lista todas as sessões'
+      operationId: GetSections
+      parameters:
+        -
+          name: name
+          in: query
+          description: 'Nome da sessão'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - sections
+      summary: 'Cria uma nova sessão'
+      operationId: StoreSection
+      parameters:
+        -
+          name: name
+          in: query
+          description: 'Nome da sessão'
+          required: true
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição da sessão'
+          required: true
+          schema:
+            type: string
+        -
+          name: order
+          in: query
+          description: 'Ordem da sessão'
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+  '/sections/{section_id}':
+    get:
+      tags:
+        - sections
+      summary: 'Lista uma sessões'
+      operationId: GetSection
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - sections
+      summary: 'Atualiza uma sessão'
+      operationId: UpdateSection
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: name
+          in: query
+          description: 'Nome da sessão'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição da sessão'
+          required: false
+          schema:
+            type: string
+        -
+          name: order
+          in: query
+          description: 'Ordem da sessão'
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+    delete:
+      tags:
+        - sections
+      summary: 'Apaga uma sessão'
+      operationId: DeleteSection
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ...
   /users/me:
     get:
       tags:
         - users
-      summary: 'Lista o usuário'
-      operationId: GetUser
+      summary: 'Retorna o usuário logado'
+      operationId: GetAuthUser
       responses:
         '200':
           description: ...
@@ -78,15 +610,8 @@ paths:
       tags:
         - users
       summary: 'Atualiza o usuário'
-      operationId: UpdateUser
+      operationId: UpdateAuthUser
       parameters:
-        -
-          name: document_number
-          in: query
-          description: 'Documento CPF'
-          required: false
-          schema:
-            type: string
         -
           name: first_name
           in: query
@@ -98,6 +623,13 @@ paths:
           name: last_name
           in: query
           description: 'Ultimo nome'
+          required: false
+          schema:
+            type: string
+        -
+          name: document_number
+          in: query
+          description: 'Documento CPF'
           required: false
           schema:
             type: string
@@ -136,25 +668,38 @@ paths:
           required: false
           schema:
             type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+  /users/me/change:
+    put:
+      tags:
+        - users
+      summary: 'Atualiza a senha do usuário'
+      operationId: UpdateAuthUserPassword
+      parameters:
         -
           name: old_password
           in: query
-          description: 'Senha atual do usuário'
-          required: false
+          description: 'Senha antiga do usuário'
+          required: true
           schema:
             type: string
         -
           name: password
           in: query
           description: 'Nova senha do usuário'
-          required: false
+          required: true
           schema:
             type: string
         -
           name: password_confirmation
           in: query
-          description: 'Confirmação da nova senha do usuário'
-          required: false
+          description: 'Confirmação da senha'
+          required: true
           schema:
             type: string
       responses:
@@ -180,16 +725,16 @@ paths:
             items:
               type: string
         -
-          name: name
+          name: first_name
           in: query
           description: 'Nome do usuário'
           required: false
           schema:
             type: string
         -
-          name: email
+          name: last_name
           in: query
-          description: 'Email do usuário'
+          description: 'Sobrenome do usuário'
           required: false
           schema:
             type: string
@@ -200,6 +745,16 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: is_admin
+          in: query
+          description: 'Status de Administrador'
+          required: false
+          schema:
+            type: number
+            enum:
+              - 0
+              - 1
       responses:
         '200':
           description: ...
@@ -306,13 +861,6 @@ paths:
       operationId: StoreUser
       parameters:
         -
-          name: document_number
-          in: query
-          description: 'Documento CPF'
-          required: true
-          schema:
-            type: string
-        -
           name: first_name
           in: query
           description: 'Primeiro nome'
@@ -327,10 +875,17 @@ paths:
           schema:
             type: string
         -
+          name: document_number
+          in: query
+          description: 'Documento CPF'
+          required: false
+          schema:
+            type: string
+        -
           name: address_street
           in: query
           description: 'Rua onde o rapaz mora'
-          required: true
+          required: false
           schema:
             type: string
         -

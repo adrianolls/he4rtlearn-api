@@ -47,8 +47,13 @@ class ApiController extends Controller
         $query = $this->query ?: $this->model;
 
         foreach ($this->fieldManager->simpleFilters() as $filter) {
-            if ($request->has($filter)) {
-                $query = $query->where($filter, $request->get($filter));
+
+            if ($request->has($filter['field'])) {
+                $value = $request->input($filter['field']);
+                if($filter['type'] == "LIKE"){
+                    $value  = "%" . $value . "%";
+                }
+                $query = $query->where($filter['field'], $filter['type'] , $value);
             }
         }
 

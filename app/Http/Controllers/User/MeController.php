@@ -28,8 +28,8 @@ class MeController extends Controller
     /**
      * @OA\Get(
      *     path="/users/me",
-     *     summary="Lista o usuário",
-     *     operationId="GetUser",
+     *     summary="Retorna o usuário logado",
+     *     operationId="GetAuthUser",
      *     tags={"users"},
      *     security={{"apiToken":{}}},
      *     @OA\Response(
@@ -46,18 +46,9 @@ class MeController extends Controller
      * @OA\Put(
      *     path="/users/me",
      *     summary="Atualiza o usuário",
-     *     operationId="UpdateUser",
+     *     operationId="UpdateAuthUser",
      *     tags={"users"},
      *     security={{"apiToken":{}}},
-     *     @OA\Parameter(
-     *         name="document_number",
-     *         in="query",
-     *         description="Documento CPF",
-     *         required=false,
-     *         @OA\Schema(
-     *           type="string"
-     *         )
-     *     ),
      *     @OA\Parameter(
      *         name="first_name",
      *         in="query",
@@ -71,6 +62,15 @@ class MeController extends Controller
      *         name="last_name",
      *         in="query",
      *         description="Ultimo nome",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="document_number",
+     *         in="query",
+     *         description="Documento CPF",
      *         required=false,
      *         @OA\Schema(
      *           type="string"
@@ -122,30 +122,55 @@ class MeController extends Controller
      *           type="string"
      *         )
      *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="...",
+     *     ),
+     *  )
+     */
+    public function update(Request $request){
+        $this->validate($request, [
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'email' => 'email',
+        ]);
+
+        User::find(Auth::user()->id)->update($request->all());
+
+        return $this->success(User::find(Auth::user()->id));
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/users/me/change",
+     *     summary="Atualiza a senha do usuário",
+     *     operationId="UpdateAuthUserPassword",
+     *     tags={"users"},
+     *     security={{"apiToken":{}}},
      *     @OA\Parameter(
      *         name="old_password",
      *         in="query",
-     *         description="Senha atual do usuário",
-     *         required=false,
-     *        @OA\Schema(
+     *         description="Senha antiga do usuário",
+     *         required=true,
+     *         @OA\Schema(
      *           type="string"
      *         )
      *     ),
-     *    @OA\Parameter(
+     *     @OA\Parameter(
      *         name="password",
      *         in="query",
      *         description="Nova senha do usuário",
-     *         required=false,
-     *        @OA\Schema(
+     *         required=true,
+     *         @OA\Schema(
      *           type="string"
      *         )
      *     ),
      *     @OA\Parameter(
      *         name="password_confirmation",
      *         in="query",
-     *         description="Confirmação da nova senha do usuário",
-     *         required=false,
-     *        @OA\Schema(
+     *         description="Confirmação da senha",
+     *         required=true,
+     *         @OA\Schema(
      *           type="string"
      *         )
      *     ),
@@ -155,29 +180,22 @@ class MeController extends Controller
      *     ),
      *  )
      */
-    public function update(Request $request){
+    public function change(Request $request)
+    {
         $this->validate($request, [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'email' => 'required|email',
-            'old_password' => 'string',
-            'password' => 'confirmed'
+            'old_password' => 'required|string',
+            'password' => 'required|string|confirmed'
         ]);
-        
-        if($request->has('old_password'))
-        {
-            $user = User::find(Auth::user()->id);
-            if(! Hash::check($request->input('old_password'), $user->password)){
-                return response()->json(['error' => 'Incorrect Password'], 401);
-            }
-            $all = $request->all();
-            $all['password'] = Hash::make($all['password']);
-            $user->update($all);
-            return $this->success($user);
+
+        $user = User::find(Auth::user()->id);
+        if(! Hash::check($request->input('old_password'), $user->password)){
+            return $this->unauthorized(['error' => 'Incorrect Password']);
         }
-        
-        $user = User::where('id',Auth::user()->id)->update($request->except(['password', 'password_confirmation']));
-        //TODO return user after update
-        return $this->success(Auth::user());
+        $password = [
+            'password' => Hash::make($request->input('password'))
+        ];
+        $user->update($password);
+
+        return $this->success(['res' => 'Your password has been changed.']);
     }
 }

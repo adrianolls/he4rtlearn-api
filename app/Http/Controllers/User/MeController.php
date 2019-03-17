@@ -187,15 +187,18 @@ class MeController extends Controller
             'password' => 'required|string|confirmed'
         ]);
 
-        $user = User::find(Auth::user()->id);
-        if(! Hash::check($request->input('old_password'), $user->password)){
+        if(! Hash::check($request->input('old_password'), Auth::user()->password)){
             return $this->unauthorized(['error' => 'Incorrect Password']);
         }
         $password = [
             'password' => Hash::make($request->input('password'))
         ];
-        $user->update($password);
+        Auth::user()->update($password);
 
         return $this->success(['res' => 'Your password has been changed.']);
+    }
+
+    public function getFinishedLessons(){
+        return $this->success(Auth::user()->lessons()->paginate(15));
     }
 }

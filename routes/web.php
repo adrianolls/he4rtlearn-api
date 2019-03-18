@@ -25,11 +25,12 @@ $router->post('auth/reset/{token}', 'AuthController@reset');
 
 $router->get('users','User\\UserController@index');
 $router->post('users','User\\UserController@store');
-$router->get('users/{id}','User\\UserController@show');
-$router->delete('users/{id}','User\\UserController@destroy');
 $router->get('users/me','User\\MeController@me');
 $router->put('users/me','User\\MeController@update');
 $router->put('users/me/change', 'User\\MeController@change');
+
+$router->get('users/{id}','User\\UserController@show');
+$router->delete('users/{id}','User\\UserController@destroy');
 
 $router->get('sections', 'Section\\SectionController@index');
 $router->post('sections', 'Section\\SectionController@store');
@@ -48,3 +49,9 @@ $router->post('sections/{section_id}/lessons/{lesson_id}/challenges', 'Challenge
 $router->get('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@getChallenge');
 $router->put('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@putChallenge');
 $router->delete('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@deleteChallenge');
+
+$router->get('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers', 'Forum\\AnswerController@getAnswers');
+$router->post('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers', 'Forum\\AnswerController@postAnswer');
+$router->get('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}', 'Forum\\AnswerController@getAnswer');
+$router->put('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}', 'Forum\\AnswerController@putAnswer');
+$router->delete('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}', 'Forum\\AnswerController@deleteAnswer');

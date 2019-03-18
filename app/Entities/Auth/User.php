@@ -3,6 +3,8 @@
 namespace App\Entities\Auth;
 
 use App\Entities\AccessLog;
+use App\Entities\Lesson\Forum\Answer;
+use App\Entities\Lesson\Forum\Question;
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -83,5 +85,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function logs(){
         return $this->hasMany(AccessLog::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }

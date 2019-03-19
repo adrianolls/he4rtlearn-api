@@ -2,7 +2,6 @@
 
 namespace App\Entities\Lesson\Forum;
 
-
 use App\Entities\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 

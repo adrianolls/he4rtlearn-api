@@ -1,7 +1,6 @@
 <?php
 namespace App\Entities\Lesson\Forum;
 
-
 use App\Entities\Auth\User;
 use App\Entities\Lesson\Lesson;
 use Illuminate\Database\Eloquent\Model;

@@ -38,4 +38,4 @@ Tendo em mente que o servidor do projeto está rodando acesse a URL ['http://loc
 
 ## Licença
 
-Este projeto está lincenciado sob a licença MIT
+Este projeto está licenciado sob a licença MIT

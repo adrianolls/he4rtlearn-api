@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lucas
- * Date: 17/03/19
- * Time: 20:21
- */
-
 namespace App\Entities\Lesson\Forum;
 
 

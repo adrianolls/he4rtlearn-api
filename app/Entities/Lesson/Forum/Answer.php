@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Entities\Lesson\Forum\Answer;
+namespace App\Entities\Lesson\Forum;
+
 
 use App\Entities\Auth\User;
-use App\Entities\Lesson\Forum\Question;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    protected $table = 'lesson_question_answers';
+  
     protected $fillable = [
         'question_id',
         'user_id',
@@ -24,3 +26,4 @@ class Answer extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 }
+

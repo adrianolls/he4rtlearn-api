@@ -1,14 +1,15 @@
 <?php
+namespace App\Entities\Lesson\Forum;
 
-namespace App\Entities\Lesson\Forum\Question;
 
-use App\Entities\Lesson;
 use App\Entities\Auth\User;
-use App\Entities\Lesson\Forum\Answer;
+use App\Entities\Lesson\Lesson;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+    protected $table = 'lesson_questions';
+
     protected $fillable = [
         'lesson_id',
         'user_id',

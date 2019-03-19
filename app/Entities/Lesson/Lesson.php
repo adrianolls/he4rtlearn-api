@@ -10,6 +10,7 @@ namespace App\Entities\Lesson;
 
 
 use App\Entities\Lesson\Challenge\Challenge;
+use App\Entities\Lesson\Forum\Question;
 use App\Entities\Section\Section;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,10 @@ class Lesson extends Model
     public function challenges()
     {
         return $this->hasMany(Challenge::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }

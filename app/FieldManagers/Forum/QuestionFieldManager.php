@@ -51,6 +51,10 @@ class QuestionFieldManager extends FieldManager
             [
                 'field' => 'approved',
                 'type' => '='
+            ],
+            [
+                'field' => 'lesson_id',
+                'type' => '='
             ]
         ];
     }

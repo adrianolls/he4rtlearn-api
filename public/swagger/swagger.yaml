@@ -374,6 +374,13 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição da resposta'
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: ...

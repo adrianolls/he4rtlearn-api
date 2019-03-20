@@ -41,6 +41,14 @@ class AnswerFieldManager extends FieldManager
                 'field' => 'user_id',
                 'type' => '='
             ],
+            [
+                'field' => 'description',
+                'type' => 'LIKE'
+            ],
+            [
+                'field' => 'question_id',
+                'type' => '='
+            ]
         ];
     }
 }

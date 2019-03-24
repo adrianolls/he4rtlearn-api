@@ -3,6 +3,8 @@
 namespace App\Entities\Auth;
 
 use App\Entities\AccessLog;
+use App\Entities\Lesson\Forum\Answer;
+use App\Entities\Lesson\Forum\Question;
 use App\Entities\Lesson\Lesson;
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
@@ -93,5 +95,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'user_id',
             'lesson_id'
         );
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }

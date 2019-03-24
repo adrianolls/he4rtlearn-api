@@ -547,6 +547,422 @@ paths:
       responses:
         '200':
           description: ...
+  '/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers':
+    get:
+      tags:
+        - answers
+      summary: 'Lista todas as respostas de uma questão'
+      operationId: GetQuestionAnswers
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: user_id
+          in: query
+          description: 'Id do usuário'
+          required: false
+          schema:
+            type: string
+        -
+          name: description
+          in: query
+          description: 'Descrição da resposta'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - answers
+      summary: 'Cria a resposta de uma questão'
+      operationId: PostQuestionAnswer
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: description
+          in: query
+          description: 'Descrição da resposta'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+  '/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}':
+    get:
+      tags:
+        - answers
+      summary: 'Lista a resposta de uma questão'
+      operationId: GetQuestionAnswer
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: answer_id
+          in: path
+          description: 'Id da resposta'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+    put:
+      tags:
+        - answers
+      summary: 'Atualiza a resposta de uma questão'
+      operationId: PutQuestionAnswer
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: answer_id
+          in: path
+          description: 'Id da resposta'
+          required: true
+          schema:
+            type: integer
+        -
+          name: description
+          in: query
+          description: 'Descrição da resposta'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+    delete:
+      tags:
+        - answers
+      summary: 'Apaga a resposta de uma questão'
+      operationId: DeleteQuestionAnswer
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: answer_id
+          in: path
+          description: 'Id da resposta'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+  '/sections/{section_id}/lessons/{lesson_id}/questions':
+    get:
+      tags:
+        - questions
+      summary: 'Lista todas as questões'
+      operationId: GetQuestions
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: includes
+          in: query
+          description: 'Faz o include das relações'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        -
+          name: user_id
+          in: query
+          description: 'Id do usuário'
+          required: false
+          schema:
+            type: string
+        -
+          name: question
+          in: query
+          description: 'Nome da questão'
+          required: false
+          schema:
+            type: string
+        -
+          name: approved
+          in: query
+          description: 'Se a questão foi aprovada'
+          required: false
+          schema:
+            type: number
+            enum:
+              - 0
+              - 1
+      responses:
+        '200':
+          description: ...
+    post:
+      tags:
+        - questions
+      summary: 'Cria uma questão'
+      operationId: PostQuestion
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question
+          in: query
+          description: 'Descrição da questão'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+  '/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}':
+    get:
+      tags:
+        - questions
+      summary: 'Lista uma questão'
+      operationId: GetQuestion
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+    put:
+      tags:
+        - questions
+      summary: 'Atualiza uma questão'
+      operationId: PutQuestion
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question
+          in: query
+          description: 'Descrição da questão'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
+    delete:
+      tags:
+        - questions
+      summary: 'Apaga uma questão'
+      operationId: DeleteQuestion
+      parameters:
+        -
+          name: section_id
+          in: path
+          description: 'Id da sessão'
+          required: true
+          schema:
+            type: integer
+        -
+          name: lesson_id
+          in: path
+          description: 'Id da lição'
+          required: true
+          schema:
+            type: integer
+        -
+          name: question_id
+          in: path
+          description: 'Id da questão'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ...
+      security:
+        -
+          apiToken: []
   '/sections/{section_id}/lessons':
     get:
       tags:

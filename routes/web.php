@@ -55,6 +55,18 @@ $router->get('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id
 $router->put('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@putChallenge');
 $router->delete('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}', 'Challenge\\ChallengeController@deleteChallenge');
 
+$router->get('/sections/{section_id}/lessons/{lesson_id}/questions', 'Forum\\QuestionController@getQuestions');
+$router->post('/sections/{section_id}/lessons/{lesson_id}/questions', 'Forum\\QuestionController@postQuestion');
+$router->get('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}', 'Forum\\QuestionController@getQuestion');
+$router->put('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}', 'Forum\\QuestionController@putQuestion');
+$router->delete('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}', 'Forum\\QuestionController@deleteQuestion');
+
+$router->get('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers', 'Forum\\AnswerController@getAnswers');
+$router->post('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers', 'Forum\\AnswerController@postAnswer');
+$router->get('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}', 'Forum\\AnswerController@getAnswer');
+$router->put('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}', 'Forum\\AnswerController@putAnswer');
+$router->delete('/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}', 'Forum\\AnswerController@deleteAnswer');
+
 
 $router->get('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers', 'Challenge\\AnswersController@getAnswers');
 $router->post('sections/{section_id}/lessons/{lesson_id}/challenges/{challenge_id}/answers', 'Challenge\\AnswersController@postAnswer');

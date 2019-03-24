@@ -74,10 +74,23 @@ class UserFieldManager extends FieldManager
 
     public function simpleFilters() {
         return [
-            'document_number',
-            'first_name',
-            'last_name',
-            'is_admin'
+            [
+                'field' => 'document_number',
+                'type' => 'LIKE'
+            ],
+            [
+                'field' => 'first_name',
+                'type' => 'LIKE'
+
+            ],
+            [
+                'field' => 'last_name',
+                'type' => 'LIKE'
+            ],
+            [
+                'field' => 'is_admin',
+                'type' => '='
+            ]
         ];
     }
 }

@@ -162,6 +162,7 @@ class QuestionController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}",
      *     summary="Lista uma questão",
      *     operationId="GetQuestion",
+     *     security={{"apiToken":{}}},
      *     tags={"questions"},
      *     @OA\Parameter(
      *         name="section_id",

@@ -32,7 +32,7 @@ class AnswerController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers",
      *     summary="Lista todas as respostas de uma questão",
      *     operationId="GetQuestionAnswers",
-     *     tags={"questions"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -110,7 +110,7 @@ class AnswerController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers",
      *     summary="Cria a resposta de uma questão",
      *     operationId="PostQuestionAnswer",
-     *     tags={"questions"},
+     *     tags={"answers"},
      *     security={{"apiToken":{}}},
      *     @OA\Parameter(
      *         name="section_id",
@@ -170,7 +170,7 @@ class AnswerController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}",
      *     summary="Lista a resposta de uma questão",
      *     operationId="GetQuestionAnswer",
-     *     tags={"questions"},
+     *     tags={"answers"},
      *     @OA\Parameter(
      *         name="section_id",
      *         in="path",
@@ -228,7 +228,7 @@ class AnswerController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}",
      *     summary="Atualiza a resposta de uma questão",
      *     operationId="PutQuestionAnswer",
-     *     tags={"questions"},
+     *     tags={"answers"},
      *     security={{"apiToken":{}}},
      *     @OA\Parameter(
      *         name="section_id",
@@ -301,7 +301,7 @@ class AnswerController extends ApiController
      *     path="/sections/{section_id}/lessons/{lesson_id}/questions/{question_id}/answers/{answer_id}",
      *     summary="Apaga a resposta de uma questão",
      *     operationId="DeleteQuestionAnswer",
-     *     tags={"questions"},
+     *     tags={"answers"},
      *     security={{"apiToken":{}}},
      *     @OA\Parameter(
      *         name="section_id",

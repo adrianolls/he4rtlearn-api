@@ -80,8 +80,7 @@ class AuthController extends Controller
         if (! $token = JWTAuth::attempt($credentials) ) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $req = new Request();
-        AccessLog::create(['user_id' => Auth::user()->id,"ip" => $req->ip(), "type" => "login"]);
+        AccessLog::create(['user_id' => Auth::user()->id,"ip" => $request->ip(), "type" => "login"]);
         return response()->json([
             'status' => 'success',
             'token' => $token
@@ -138,8 +137,7 @@ class AuthController extends Controller
         if (! $token = JWTAuth::attempt($credentials) ) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $req = new Request();
-        AccessLog::create(['user_id' => Auth::user()->id,"ip" => $req->ip(), "type" => "login"]);
+        AccessLog::create(['user_id' => Auth::user()->id,"ip" => $request->ip(), "type" => "login"]);
         return response()->json([
             'status' => 'success',
             'token' => $token
@@ -158,12 +156,11 @@ class AuthController extends Controller
      *
      * )
      */
-    public function refresh()
+    public function refresh(Request $request)
     {
         $token = JWTAuth::getToken();
         $new = JWTAuth::refresh($token);
-        $req = new Request();
-        AccessLog::create(['user_id' => Auth::user()->id,"ip" => $req->ip(), "type" => "refresh"]);
+        AccessLog::create(['user_id' => Auth::user()->id,"ip" => $request->ip(), "type" => "refresh"]);
         return response()->json([
             'token' => $new
         ]);
